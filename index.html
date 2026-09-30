@@ -216,13 +216,13 @@ function buildGrid(){
     const ok=unlocked||n=='Veronica',b=document.createElement('button');
     b.innerHTML='<img alt="" src="'+spr(n)+'"'+(ok?'':' class="lk"')+'><span>'+(ok?n:'🔒')+'</span>';
     if(ok)b.onclick=()=>{img.src=spr(n);$('sel').style.display='none';reset();started=true};
+    else b.disabled=true;
     if(unlocked&&n=='Giorgio'){
       const sp=b.querySelector('span'),im=b.querySelector('img');
       sp.innerHTML='<span class="arr" data-d="1">◀</span> Giorgio <span class="arr" data-d="1">▶</span>';
       sp.style.cssText='display:flex;align-items:center;gap:2px';
       sp.querySelectorAll('.arr').forEach(a=>a.onclick=e=>{e.stopPropagation();skinG=skinG?0:1;try{localStorage.setItem('salta_skinG',skinG)}catch(_){}im.src=spr('Giorgio')});
     }
-    else b.disabled=true;
     grid.appendChild(b);
   }
 }
